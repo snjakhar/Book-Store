@@ -10,6 +10,13 @@ router.post("/", async (req, res) => {
     res.send(err).status(500);
   }
 });
+router.get("/search", async (req, res) => {
+  const bookName = req.query.bookname;
+  try {
+    const books = await Book.find({ title: bookName });
+    res.send({ books }).status(200);
+  } catch (err) {}
+});
 router.get("/", async (req, res) => {
   try {
     const book = await Book.find().lean().exec();
@@ -18,4 +25,5 @@ router.get("/", async (req, res) => {
     res.send({ err }).status(500);
   }
 });
+
 module.exports = router;
