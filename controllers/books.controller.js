@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
     const book = await Book.create(req.body);
     res.send({ book }).status(200);
   } catch (err) {
-    res.send({ err }).status(500);
+    res.send(err).status(500);
   }
 });
 router.get("/", async (req, res) => {
